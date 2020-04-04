@@ -1,0 +1,9 @@
+{
+	"name": "plugin-test",
+	"version": "1.0.0",
+	"description": "",
+	"mainDev": "src/main.js",
+	"main": "main.js",
+	"author": "",
+	"license": "MIT"
+}
