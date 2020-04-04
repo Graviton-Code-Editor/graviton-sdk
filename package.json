@@ -1,5 +1,5 @@
 {
-	"name": "graviton-sdk",
+	"name": "@gveditor/sdk",
 	"version": "0.1.0",
 	"description": "Graviton CLI ",
 	"main": "index.js",

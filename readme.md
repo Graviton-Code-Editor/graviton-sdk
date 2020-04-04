@@ -1,7 +1,7 @@
 # Graviton SDK
 
 ### Installation
-`npm install graviton-sdk -g`
+`npm install @gveditor/sdk -g`
 
 ### Watch a plugin
 `npm --entry package.json --target plugin`
