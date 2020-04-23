@@ -50,20 +50,20 @@ function bundleParcel(entryProject){
 		const entryPackage = require(entryProject)
 		const entryFolder = path.dirname(entryProject)
 		const entryDir =  path.resolve(__dirname,entryFolder)
-		const entryFile = path.join(entryDir,entryPackage.mainDev)
+		const entryFile = path.join(entryDir,entryPackage.mainSrc)
 		const dirFolder = path.join(entryDir,'dist')
 		const cacheFolder = path.join(entryFolder,'.cache')
 		const bundler = new Bundler(entryFile, {
-			outDir: dirFolder, // The out directory to put the build files in, defaults to dist
-			cache: true, // Enabled or disables caching, defaults to true
-			watch:false,
-			cacheDir: cacheFolder, // The directory cache gets put in, defaults to .cache
-			contentHash: false, // Disable content hash from being included on the filename
-			minify: true, // Minify files, enabled if process.env.NODE_ENV === 'production'
-			target: 'electron', // Browser/node/electron, defaults to browser
-			bundleNodeModules: true, // By default, package.json dependencies are not included when using 'node' or 'electron' with 'target' option above. Set to true to adds them to the bundle, false by default
-			sourceMaps: true, // Enable or disable sourcemaps, defaults to enabled (minified builds currently always create sourcemaps)
-			detailedReport: false // Prints a detailed report of the bundles, assets, filesizes and times, defaults to false, reports are only printed if watch is disabled
+			outDir: dirFolder, 
+			cache: true, 
+			watch: false,
+			cacheDir: cacheFolder, 
+			contentHash: false,
+			minify: true, 
+			target: 'electron',
+			bundleNodeModules: true, 
+			sourceMaps: true, 
+			detailedReport: false 
 		})
 		bundler.bundle();
 		bundler.on('bundled',()=>{
@@ -80,19 +80,18 @@ function bundleParcel(entryProject){
 }
 
 
-function watchParcel(entryProject){
-	console.log(__dirname,process.cwd())
+function watchParcel( entryProject ){
 	entryProject = path.join(process.cwd(),entryProject)
 	const entryPackage = require(entryProject)
 	const entryFolder = path.dirname(entryProject)
 	const entryDir =  path.resolve(__dirname,entryFolder)
-	const entryFile = path.join(entryDir,entryPackage.mainDev)
+	const entryFile = path.join(entryDir,entryPackage.mainSrc)
 	const dirFolder = path.join(entryDir,'dist')
 	const cacheFolder = path.join(entryFolder,'.cache')
 	const bundler = new Bundler(entryFile, {
 		outDir: dirFolder, 
 		cache: true, 
-		watch:true,
+		watch: true,
 		cacheDir: cacheFolder, 
 		minify: true, 
 		target: 'electron', 
