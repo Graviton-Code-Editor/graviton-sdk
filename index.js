@@ -60,7 +60,7 @@ function bundleParcel(entryProject){
 			cacheDir: cacheFolder, 
 			contentHash: false,
 			minify: true, 
-			target: 'electron',
+			target: 'node',
 			bundleNodeModules: true, 
 			sourceMaps: true, 
 			detailedReport: false 
@@ -94,7 +94,7 @@ function watchParcel( entryProject ){
 		watch: true,
 		cacheDir: cacheFolder, 
 		minify: true, 
-		target: 'electron', 
+		target: 'node', 
 		bundleNodeModules: true,
 		sourceMaps: true, 
 		detailedReport: true

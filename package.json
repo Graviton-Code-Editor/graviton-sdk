@@ -1,6 +1,6 @@
 {
 	"name": "@gveditor/sdk",
-	"version": "0.1.2",
+	"version": "0.1.3",
 	"description": "Graviton sdk ",
 	"main": "index.js",
 	"bin": {
