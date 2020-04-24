@@ -1,9 +1,9 @@
 {
 	"name": "plugin-test",
+	"type":"plugin",
 	"version": "1.0.0",
-	"description": "",
-	"mainDev": "src/main.js",
+	"mainDev": "dist/main.js",
+	"mainSrc": "src/main.js",
 	"main": "main.js",
-	"author": "",
 	"license": "MIT"
 }
