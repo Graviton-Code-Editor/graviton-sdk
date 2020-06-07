@@ -1,22 +1,34 @@
-# Graviton SDK
+# 🧵 Graviton SDK
+CLI to develop plugins for [Graviton Editor](https://github.com/Graviton-Code-Editor/Graviton-App)
 
-### Prequisites:
-package.json must contain these 3 keywords:
+### ✍ Usage
+Installation:
 
-* mainSrc: indicates the main source file
-* mainDev: the destination of the main file when developing the plugin it self
-* main: the destination of the main file when built
+```shell
+npm install --save-dev @gveditor/sdk
+```
+Example Scripts:
 
-### Installation
-Globally:
-`npm install @gveditor/sdk -g`
+Develop plugin:
+```shell
+gvsdk --entry package.json --target plugin
+```
 
-Or, as a dev dependency:
+Build plugin:
+```shell
+gvsdk --entry package.json --target plugin --mode release
+```
 
-`npm install @gveditor/sdk --save-dev`
+### 📜 Instructions
+package.json must include these 3 keywords:
 
-### Developing
-`gvsdk --entry package.json --target plugin`
+* mainSrc: Indicates the main source file when developing
+* mainDev: Indicates the main destination file  when developing
+* main: Indicates the main destination file on production
 
-### Building
-`gvsdk --entry package.json --target plugin --mode release`
+CLI parameters:
+
+* entry: Indicates the package.json of the project
+* target: Indicates the target type (plugin)
+* mode: Indicates the build output (dev, release)
+
