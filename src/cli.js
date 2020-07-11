@@ -44,7 +44,7 @@ function validateMode( mode ){
 		switch(mode){
 			case 'release':
 				let { dirFolder, entryDir, entryPackage, pluginType } = await bundleSource({
-					entryProject: program.entry
+					entryProject: path.join(process.cwd(),program.entry)
 				})
 				await copyPackageToDist({
 					entryProject: program.entry,
@@ -59,7 +59,7 @@ function validateMode( mode ){
 				break;
 			case 'dev':
 				await watchParcel({
-					entryProject: program.entry
+					entryProject: path.join(process.cwd(),program.entry)
 				})
 				break;
 		}

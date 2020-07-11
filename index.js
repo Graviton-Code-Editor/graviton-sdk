@@ -9,7 +9,6 @@ function bundleSource({
 	distDir,
 	cacheDir
 }){
-	entryProject = path.join(process.cwd(),entryProject)
 	return new Promise(async (resolve,reject) => {
 		let error = false
 		try {
@@ -66,7 +65,6 @@ function watchParcel({
 	distDir,
 	cacheDir
 }){
-	entryProject = path.join(process.cwd(),entryProject)
 	const entryPackage = require(entryProject)
 	const entryFolder = path.dirname(entryProject)
 	const entryDir =  path.resolve(__dirname,entryFolder)
