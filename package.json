@@ -1,6 +1,6 @@
 {
 	"name": "@gveditor/sdk",
-	"version": "0.1.7",
+	"version": "0.1.8",
 	"description": "Graviton sdk ",
 	"main": "index.js",
 	"bin": {
@@ -16,6 +16,7 @@
 	"bugs": "https://github.com/Graviton-Code-Editor/graviton-sdk/issues",
 	"dependencies": {
 		"commander": "^5.0.0",
+		"fancylog": "^4.0.5",
 		"fs-extra": "^9.0.0",
 		"parcel-bundler": "^1.12.4",
 		"zip-a-folder": "0.0.12"
