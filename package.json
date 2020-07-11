@@ -1,10 +1,10 @@
 {
 	"name": "@gveditor/sdk",
-	"version": "0.1.6",
+	"version": "0.1.7",
 	"description": "Graviton sdk ",
 	"main": "index.js",
 	"bin": {
-		"gvsdk": "cli.js"
+		"gvsdk": "src/cli.js"
 	},
 	"scripts": {
 		"test": "node src/cli.js --target plugin --entry ./test/package.json --mode release",
