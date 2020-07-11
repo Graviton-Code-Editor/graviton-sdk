@@ -1,14 +1,14 @@
 {
 	"name": "@gveditor/sdk",
-	"version": "0.1.5",
+	"version": "0.1.6",
 	"description": "Graviton sdk ",
 	"main": "index.js",
 	"bin": {
-		"gvsdk": "index.js"
+		"gvsdk": "cli.js"
 	},
 	"scripts": {
-		"test": "node index.js --target plugin --entry ./test/package.json --mode release",
-		"test2": "node index.js --target plugin --entry ./test/package.json"
+		"test": "node src/cli.js --target plugin --entry ./test/package.json --mode release",
+		"test2": "node src/cli.js --target plugin --entry ./test/package.json"
 	},
 	"author": "Marc Espín Sanz <mespinsanz@gmail.com>",
 	"license": "MIT",

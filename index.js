@@ -1,40 +1,14 @@
-#!/usr/bin/env node
-
-const { program } = require("commander")
 const Bundler = require('parcel-bundler');
 const path = require('path');
 const { zip } = require('zip-a-folder');
 const fs = require('fs-extra')
+const log = require('fancylog')
 
-program
-	.option('-e, --entry <value>', 'Entry file')
-	.option('-t, --target <value>', 'Target type')
-	.option('-m, --mode <value>', 'Mode')
-;
-
-program.parse(process.argv);
-
-
-function validateTarget( target ){
-	switch( target ){
-		case 'plugin':
-			return 'plugin'
-		default:
-			return false
-	}
-}
-
-function validateMode( mode ){
-	switch( mode ){
-		case 'release':
-			return 'release'
-		case 'dev':
-		default:
-			return 'dev'
-	}
-}
-
-function bundleParcel(entryProject){
+function bundleSource({
+	entryProject,
+	distDir,
+	cacheDir
+}){
 	entryProject = path.join(process.cwd(),entryProject)
 	return new Promise(async (resolve,reject) => {
 		let error = false
@@ -53,10 +27,10 @@ function bundleParcel(entryProject){
 			const entryFile = path.join(entryDir,entryPackage.mainSrc)
 			const cacheFolder = path.join(entryFolder,'.cache')
 			const bundler = new Bundler(entryFile, {
-				outDir: dirFolder, 
+				outDir: distDir || dirFolder, 
 				cache: true, 
 				watch: false,
-				cacheDir: cacheFolder, 
+				cacheDir: cacheDir || cacheFolder, 
 				contentHash: false,
 				minify: true, 
 				target: 'node',
@@ -87,7 +61,11 @@ function bundleParcel(entryProject){
 }
 
 
-function watchParcel( entryProject ){
+function watchParcel({
+	entryProject,
+	distDir,
+	cacheDir
+}){
 	entryProject = path.join(process.cwd(),entryProject)
 	const entryPackage = require(entryProject)
 	const entryFolder = path.dirname(entryProject)
@@ -106,7 +84,7 @@ function watchParcel( entryProject ){
 		sourceMaps: true, 
 		detailedReport: true
 	})
-	console.log(`Graviton:: Started watching.`)
+	log.info(`Graviton SDK -> Started watching.`)
 	bundler.bundle();
 }
 
@@ -140,27 +118,10 @@ function bundleZip({
 	})
 }
 
-(async () => {
-	const target = validateTarget(program.target)
-	const mode = validateMode(program.mode)
-	if( target && program.entry ){
-		switch(mode){
-			case 'release':
-				let { dirFolder, entryDir, entryPackage, pluginType } = await bundleParcel(program.entry)
-				await copyPackageToDist({
-					entryProject: program.entry,
-					dirFolder
-				})
-				let { buildDir } = await bundleZip({
-					entryDir,
-					dirFolder,
-					entryPackage
-				})
-				console.log(`\n Graviton:: ${entryPackage.name} built in ${buildDir} \n`)
-				break;
-			case 'dev':
-				await watchParcel(program.entry)
-				break;
-		}
-	}
-})()
+
+module.exports = { 
+	bundleSource, 
+	watchParcel, 
+	copyPackageToDist, 
+	bundleZip 
+}
