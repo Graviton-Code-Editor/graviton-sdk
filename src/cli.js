@@ -40,14 +40,15 @@ function validateMode( mode ){
 (async () => {
 	const target = validateTarget(program.target)
 	const mode = validateMode(program.mode)
+	const cwd = path.join(process.cwd(),program.entry)
 	if( target && program.entry ){
 		switch(mode){
 			case 'release':
 				let { dirFolder, entryDir, entryPackage, pluginType } = await bundleSource({
-					entryProject: path.join(process.cwd(),program.entry)
+					entryProject: cwd
 				})
 				await copyPackageToDist({
-					entryProject: program.entry,
+					entryProject: cwd,
 					dirFolder
 				})
 				let { buildDir } = await bundleZip({
@@ -59,7 +60,7 @@ function validateMode( mode ){
 				break;
 			case 'dev':
 				await watchParcel({
-					entryProject: path.join(process.cwd(),program.entry)
+					entryProject: cwd
 				})
 				break;
 		}
