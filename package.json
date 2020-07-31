@@ -1,6 +1,6 @@
 {
 	"name": "@gveditor/sdk",
-	"version": "0.2.0",
+	"version": "0.2.1",
 	"description": "Graviton sdk ",
 	"main": "index.js",
 	"bin": {
@@ -15,6 +15,7 @@
 	"repository": "github:Graviton-Code-Editor/graviton-sdk",
 	"bugs": "https://github.com/Graviton-Code-Editor/graviton-sdk/issues",
 	"dependencies": {
+		"@mkenzo_8/puffin": "^1.0.5",
 		"commander": "^5.0.0",
 		"fancylog": "^4.0.5",
 		"fs-extra": "^9.0.0",
