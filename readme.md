@@ -1,13 +1,7 @@
 # 🧵 Graviton SDK
 CLI to develop plugins for [Graviton Editor](https://github.com/Graviton-Code-Editor/Graviton-App)
 
-This uses Parcel (v1.12.4) so you can do cool things as using:
-
-* TypeScript
-* CoffeScript
-* Rust
-
-See Parcel's documentation for more: https://parceljs.org/getting_started.html
+This has a built-in bundle (parcel) and a zipper.
 
 ### ✍ Usage
 Installation:
@@ -16,7 +10,7 @@ Installation:
 npm install --save-dev @gveditor/sdk
 ```
 
-Develop plugin locally:
+Develop plugin for development:
 ```shell
 gvsdk --entry package.json --target plugin --mode dev
 ```
@@ -26,8 +20,13 @@ Build plugin for production:
 gvsdk --entry package.json --target plugin --mode release
 ```
 
+Available targets:
+* plugin ( aka Dynamic or JavaScript plugin)
+* iconpack (Icons pack)
+
 ### 📜 Instructions
-package.json must include these 3 keywords:
+
+Plugins targeting `plugin` need to specify some keys in it's Manifest file.
 
 * mainSrc: Main file path
 * mainDev: Main file destination path when developing
@@ -36,7 +35,7 @@ package.json must include these 3 keywords:
 CLI parameters:
 
 * entry: Path of package.json
-* target: Target type, only supports plugin for now
+* target: Target type (plugin | iconpack)
 * mode: Build type (dev, release)
 
 ### 🤖 Who is using this?
@@ -44,3 +43,5 @@ CLI parameters:
 * [Deno Graviton](https://github.com/marc2332/deno-graviton)
 * [Cargo Graviton](https://github.com/marc2332/cargo-graviton)
 * [Flutter Graviton](https://github.com/Graviton-Code-Editor/flutter-plugin)
+
+And Graviton Editor it self.

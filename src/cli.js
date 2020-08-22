@@ -1,10 +1,7 @@
 #!/usr/bin/env node
 
 const { program } = require("commander")
-const Bundler = require('parcel-bundler');
 const path = require('path');
-const { zip } = require('zip-a-folder');
-const fs = require('fs-extra')
 const log = require('fancylog')
 
 const { bundleSource, watchParcel, copyPackageToDist, bundleZip } = require('../index.js')
@@ -22,6 +19,8 @@ function validateTarget( target ){
 	switch( target ){
 		case 'plugin':
 			return 'plugin'
+		case 'iconpack':
+			return 'iconpack'
 		default:
 			return false
 	}
@@ -40,15 +39,15 @@ function validateMode( mode ){
 (async () => {
 	const target = validateTarget(program.target)
 	const mode = validateMode(program.mode)
-	const cwd = path.join(process.cwd(),program.entry)
+	const entryProject = path.join(process.cwd(),program.entry)
 	if( target && program.entry ){
 		switch(mode){
 			case 'release':
-				let { dirFolder, entryDir, entryPackage, pluginType } = await bundleSource({
-					entryProject: cwd
+				let { dirFolder, entryDir, entryPackage } = await bundleSource({
+					entryProject
 				})
 				await copyPackageToDist({
-					entryProject: cwd,
+					entryProject,
 					dirFolder
 				})
 				let { buildDir } = await bundleZip({
@@ -59,8 +58,8 @@ function validateMode( mode ){
 				log.info(`Graviton SDK -> Plugin "${entryPackage.name}" built in ${buildDir}`)
 				break;
 			case 'dev':
-				await watchParcel({
-					entryProject: cwd
+				watchParcel({
+					entryProject
 				})
 				break;
 		}

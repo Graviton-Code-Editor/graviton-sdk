@@ -1,4 +1,4 @@
-test/build
-test/dist
-test/.cache
+test/*/.cache
+test/*/build
+test/*/dist
 node_modules

@@ -1,18 +1,19 @@
 {
 	"name": "@gveditor/sdk",
-	"version": "0.2.2",
-	"description": "Graviton sdk ",
+	"version": "0.2.3",
+	"description": "Graviton SDK to develop plugins.",
 	"main": "index.js",
 	"bin": {
 		"gvsdk": "src/cli.js"
 	},
 	"scripts": {
-		"test": "node src/cli.js --target plugin --entry ./test/package.json --mode release",
-		"test2": "node src/cli.js --target plugin --entry ./test/package.json"
+		"test:release:plugin": "node src/cli.js --target plugin --entry ./test/plugin/package.json --mode release",
+		"test:watch:plugin": "node src/cli.js --target plugin --entry ./test/plugin/package.json",
+		"test:release:iconpack": "node src/cli.js --target iconpack --entry ./test/iconpack/package.json --mode release"
 	},
 	"author": "Marc Espín Sanz <mespinsanz@gmail.com>",
 	"license": "MIT",
-	"repository": "github:Graviton-Code-Editor/graviton-sdk",
+	"repository": "https://github.com/Graviton-Code-Editor/graviton-sdk",
 	"bugs": "https://github.com/Graviton-Code-Editor/graviton-sdk/issues",
 	"dependencies": {
 		"commander": "^5.0.0",
@@ -20,6 +21,7 @@
 		"fancylog": "^4.0.5",
 		"fs-extra": "^9.0.0",
 		"lodash": "^4.17.19",
+		"ncp": "^2.0.0",
 		"parcel-bundler": "^1.12.4",
 		"zip-a-folder": "0.0.12"
 	}
