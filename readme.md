@@ -21,8 +21,9 @@ gvsdk --entry package.json --target plugin --mode release
 ```
 
 Available targets:
-* plugin ( aka Dynamic or JavaScript plugin)
-* iconpack (Icons pack)
+* plugin ( aka Dynamic or JavaScript plugin )
+* iconpack ( Icons pack )
+* theme ( UI themes )
 
 ### 📜 Instructions
 

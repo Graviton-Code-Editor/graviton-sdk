@@ -2,7 +2,7 @@
 
 const { program } = require("commander")
 const path = require('path');
-const log = require('fancylog')
+const log = require('./log')
 
 const { bundleSource, watchParcel, copyPackageToDist, bundleZip } = require('../index.js')
 
@@ -21,6 +21,8 @@ function validateTarget( target ){
 			return 'plugin'
 		case 'iconpack':
 			return 'iconpack'
+		case 'theme':
+			return 'theme'
 		default:
 			return false
 	}
@@ -55,7 +57,7 @@ function validateMode( mode ){
 					dirFolder,
 					entryPackage
 				})
-				log.info(`Graviton SDK -> Plugin "${entryPackage.name}" built in ${buildDir}`)
+				log.success(`Plugin "${entryPackage.name}" built in ${buildDir}`)
 				break;
 			case 'dev':
 				watchParcel({
@@ -65,3 +67,5 @@ function validateMode( mode ){
 		}
 	}
 })()
+
+

@@ -2,8 +2,13 @@ const Bundler = require('parcel-bundler');
 const path = require('path');
 const { zip } = require('zip-a-folder');
 const fs = require('fs-extra')
-const log = require('fancylog')
+const log = require('./src/log')
 const { ncp } = require('ncp')
+
+const allowedDirs = [
+	'package.json',
+	'icons'
+]
 
 function bundleSource({
 	entryProject,
@@ -37,7 +42,8 @@ function bundleSource({
 					target: 'node',
 					bundleNodeModules: true, 
 					sourceMaps: true, 
-					detailedReport: false 
+					detailedReport: false,
+					logLevel: 2
 				})
 				bundler.bundle();
 				bundler.on('bundled',()=>{
@@ -55,10 +61,34 @@ function bundleSource({
 				if( !fs.existsSync(dirFolder) ) fs.mkdirSync(dirFolder)
 				ncp(entryDir, dirFolder, {
 					filter(dir){
-						if(path.basename(dir) === 'build' || path.basename(dir) === 'dist' || path.basename(dir) === 'package.json'){
-							return false
+						if(allowedDirs.includes(path.basename(dir)) || dir === entryDir ){
+							return true
 						}
-						return true
+						return false
+					}
+				}, err => {
+					if(err){
+						console.error(err)
+					}else{
+						resolve({
+							pluginType,
+							entryPackage,
+							entryDir,
+							dirFolder
+						})
+					}
+				})
+				break;
+			case 'theme':
+				if( !fs.existsSync(dirFolder) ) fs.mkdirSync(dirFolder)
+				const cmThemePath = path.join(entryDir, entryPackage.fileTheme || '')
+				const cmThemeDir = path.parse(path.relative(entryDir, cmThemePath)).dir
+				ncp(entryDir, dirFolder, {
+					filter(dir){
+						if(allowedDirs.includes(path.basename(dir)) || dir === entryDir || path.basename(dir) === cmThemeDir || dir === cmThemePath){
+							return true
+						}
+						return false
 					}
 				}, err => {
 					if(err){
@@ -103,9 +133,12 @@ function watchParcel({
 		target: 'node', 
 		bundleNodeModules: true,
 		sourceMaps: true, 
-		detailedReport: true
+		detailedReport: true,
+		logLevel: 2
 	})
-	log.info(`Graviton SDK -> Started watching.`)
+	bundler.on('buildStart', () => {
+		log.info(`Started watching for changes.`)
+	});
 	bundler.bundle();
 }
 
