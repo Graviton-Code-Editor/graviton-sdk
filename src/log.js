@@ -6,6 +6,9 @@ const log = {
 	},
 	success(text){
 		console.log(chalk.bold.bgGreen(`\n [gvsdk] -> `), chalk.underline(`${text} \n`))
+	},
+	error(text){
+		console.log(chalk.bold.bgRed(`\n [gvsdk] -> `), chalk.underline(`${text} \n`))
 	}
 }
 

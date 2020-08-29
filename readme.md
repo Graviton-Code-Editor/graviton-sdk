@@ -1,7 +1,7 @@
 # 🧵 Graviton SDK
 CLI to develop plugins for [Graviton Editor](https://github.com/Graviton-Code-Editor/Graviton-App)
 
-This has a built-in bundle (parcel) and a zipper.
+It makes use of Webpack API under the hood.
 
 ### ✍ Usage
 Installation:
@@ -12,12 +12,12 @@ npm install --save-dev @gveditor/sdk
 
 Develop plugin for development:
 ```shell
-gvsdk --entry package.json --target plugin --mode dev
+gvsdk --project . --target plugin --mode dev
 ```
 
 Build plugin for production:
 ```shell
-gvsdk --entry package.json --target plugin --mode release
+gvsdk --project . --target plugin --mode release
 ```
 
 Available targets:
@@ -27,15 +27,9 @@ Available targets:
 
 ### 📜 Instructions
 
-Plugins targeting `plugin` need to specify some keys in it's Manifest file.
-
-* mainSrc: Main file path
-* mainDev: Main file destination path when developing
-* main: Main file in production
-
 CLI parameters:
 
-* entry: Path of package.json
+* project: Path of the Plugin's folder (where the package.json is located)
 * target: Target type (plugin | iconpack)
 * mode: Build type (dev, release)
 

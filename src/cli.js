@@ -4,10 +4,10 @@ const { program } = require("commander")
 const path = require('path');
 const log = require('./log')
 
-const { bundleSource, watchParcel, copyPackageToDist, bundleZip } = require('../index.js')
+const { Bundler } = require('../bin/index.js')
 
 program
-	.option('-e, --entry <value>', 'Entry file')
+	.option('-p, --project <value>', 'Project path')
 	.option('-t, --target <value>', 'Target type')
 	.option('-m, --mode <value>', 'Mode')
 ;
@@ -41,27 +41,28 @@ function validateMode( mode ){
 (async () => {
 	const target = validateTarget(program.target)
 	const mode = validateMode(program.mode)
-	const entryProject = path.join(process.cwd(),program.entry)
-	if( target && program.entry ){
+	const projectPath = path.join(process.cwd(), program.project)
+	if( target && projectPath ){
 		switch(mode){
 			case 'release':
-				let { dirFolder, entryDir, entryPackage } = await bundleSource({
-					entryProject
+				const release = new Bundler({
+					projectPath
 				})
-				await copyPackageToDist({
-					entryProject,
-					dirFolder
-				})
-				let { buildDir } = await bundleZip({
-					entryDir,
-					dirFolder,
-					entryPackage
-				})
-				log.success(`Plugin "${entryPackage.name}" built in ${buildDir}`)
+				await release.bundle()
+				await release.copyAssets()
+				await release.zip()
+				log.success(`Plugin "${release.packageConf.name}" built in ${release.releasePath}`)
 				break;
 			case 'dev':
-				watchParcel({
-					entryProject
+				const dev = new Bundler({
+					projectPath
+				})
+				dev.watch().then((err) => {
+					if(err){
+						log.error(err)
+					}else{
+						log.info(`Started watching for changes.`)
+					}
 				})
 				break;
 		}
