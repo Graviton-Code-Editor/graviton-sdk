@@ -76,11 +76,7 @@ class Bundler {
 				case 'plugin':
 				
 					this.compiler().run((err: string,stats: any) => {
-						if(!err){
-							resolve(this)
-						} else {
-							console.error(err)
-						}
+						resolve(...[err,stats])
 					})
 
 					break;
@@ -93,11 +89,7 @@ class Bundler {
 							return false
 						}
 					}, (err: string) => {
-						if(err){
-							console.error(err)
-						}else{
-							resolve(this)
-						}
+						resolve(...[err])
 					})
 					break;
 				case 'theme':
@@ -111,11 +103,7 @@ class Bundler {
 							return false
 						}
 					}, (err: string) => {
-						if(err){
-							console.error(err)
-						}else{
-							resolve(this)
-						}
+						resolve(...[err])
 					})
 					break;
 				default: 
