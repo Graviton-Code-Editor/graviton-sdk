@@ -5,5 +5,8 @@
 		"esModuleInterop": true,
 		"resolveJsonModule": true,
 		"outDir": "bin"
-	}
+	},
+	"files":[
+		"src/index.ts"
+	]
 }
