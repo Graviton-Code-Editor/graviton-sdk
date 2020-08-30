@@ -57,12 +57,12 @@ function validateMode( mode ){
 				const dev = new Bundler({
 					projectPath
 				})
-				dev.watch().then((err) => {
+				dev.watch((err) => {
 					if(err){
 						log.error(err)
-					}else{
-						log.info(`Started watching for changes.`)
 					}
+				}).then(() => {
+					log.info(`Started watching for changes.`)
 				})
 				break;
 		}

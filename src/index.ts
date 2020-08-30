@@ -111,7 +111,7 @@ class Bundler {
 			}
 		})
 	}
-	public watch(){
+	public watch(callback: (err: any, stats: any) => void){
 		return new Promise(async (resolve) => {
 			if( !fs.existsSync(this.distPath) ){
 				fs.mkdirSync(this.distPath)
@@ -120,8 +120,10 @@ class Bundler {
 				this.compiler({
 					dev: true
 				}).watch({},(err: string,stats: any) => {
-					resolve(...[err,stats])
+					const info = stats.toJson();
+					callback(stats.hasErrors() ? info.errors : null,stats)
 				})
+				resolve(this)
 			}
 		})
 	}

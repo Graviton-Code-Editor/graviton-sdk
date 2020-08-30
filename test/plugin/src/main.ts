@@ -1,7 +1,7 @@
-import { EntryContext} from '../../../types'
+import { EntryContext } from '../../../types'
 
-export const entry = ({ RunningConfig }: EntryContext) => {
-	RunningConfig.on('aFileHasBeenChanged',({ }) => {
+export const entry = (args: EntryContext) => {
+	args.RunningConfig.on('aFileHasBeenChanged', ({ }) => {
 		
 	})
 }
