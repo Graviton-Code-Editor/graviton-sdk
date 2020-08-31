@@ -57,9 +57,14 @@ function validateMode( mode ){
 				const dev = new Bundler({
 					projectPath
 				})
+				let lastError = null
 				dev.watch((err) => {
 					if(err){
 						log.error(err)
+						lastError = err
+					}else if(lastError){
+						log.info(`Any error.`)
+						lastError = null
 					}
 				}).then(() => {
 					log.info(`Started watching for changes.`)
