@@ -7,6 +7,9 @@ type EventsNames =
 	| 'aTabHasBeenClosed' 
 	| 'aFileHasBeenCreated' 
 	| 'aFileHasBeenChanged'
+	| 'appLoaded'
+	| 'addFolderToRunningWorkspace'
+	| 'removeFolderFromRunningWorkspace'
 
 interface TabEventArgs {
 	tabElement: HTMLElement,
@@ -32,6 +35,4 @@ interface FolderEventsArgs {
 interface EventsArgs extends TabEventArgs, FileEventsArgs, FolderEventsArgs {}
 
 
-export default interface RunningConfig extends PuffinState<EventsNames, EventsArgs>{
-	
-}
+export default interface RunningConfig extends PuffinState<EventsNames, EventsArgs>{ }
