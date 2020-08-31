@@ -127,9 +127,9 @@ class Bundler {
 			}
 		})
 	}
-	public copyAssets(){
+	public copyAssets(customDistPath: string){
 		return new Promise((resolve) => {
-			const dirProject = path.join(this.distPath,'package.json')
+			const dirProject = path.join(customDistPath || this.distPath,'package.json')
 			fs.copyFile(this.packagePath, dirProject, (err: string) => {
 				if (err) throw err;
 				resolve()
