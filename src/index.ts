@@ -11,6 +11,7 @@ const allowedDirs = [
 
 interface BundlerArgs {
 	projectPath: string
+	distPath: string
 }
 
 class Bundler {
@@ -24,7 +25,8 @@ class Bundler {
 	releasePath: string
 	
 	constructor({
-		projectPath
+		projectPath,
+		distPath
 	}: BundlerArgs){
 		this.packagePath = path.join(projectPath, 'package.json')
 		this.projectPath = projectPath
@@ -39,7 +41,7 @@ class Bundler {
 		
 		this.entryFile = path.join(this.projectPath, this.packageConf.mainSrc)
 		
-		this.distPath = path.join(this.projectPath, 'dist')
+		this.distPath = distPath || path.join(this.projectPath, 'dist')
 		this.buildPath = path.join(this.projectPath, 'build')
 		this.releasePath = path.join(this.buildPath,`${this.packageConf.name}_v${this.packageConf.version}.zip`)
 	}
@@ -127,9 +129,9 @@ class Bundler {
 			}
 		})
 	}
-	public copyAssets(customDistPath: string){
+	public copyAssets(){
 		return new Promise((resolve) => {
-			const dirProject = path.join(customDistPath || this.distPath,'package.json')
+			const dirProject = path.join(this.distPath,'package.json')
 			fs.copyFile(this.packagePath, dirProject, (err: string) => {
 				if (err) throw err;
 				resolve()
