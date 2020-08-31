@@ -1,12 +1,13 @@
 {
 	"name": "@gveditor/sdk",
-	"version": "0.3.0",
+	"version": "0.3.1",
 	"description": "Graviton SDK to develop plugins.",
 	"main": "bin/index.js",
 	"bin": {
 		"gvsdk": "src/cli.js"
 	},
 	"exports":{
+		".":"bin/index.js",
 		"types":"types/index.ts"
 	},
 	"scripts": {
