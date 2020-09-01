@@ -65,7 +65,7 @@ class Bundler {
 							"compilerOptions":{
 								"sourceMap": true,
 								"target": "es6",
-								"lib": ["es6"],
+								"lib": ["ES2020","dom"],
 								"module": "commonjs",
 								"moduleResolution": "node",
 								"esModuleInterop": true,
