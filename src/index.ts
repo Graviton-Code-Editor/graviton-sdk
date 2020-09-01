@@ -84,7 +84,8 @@ class Bundler {
 								"moduleResolution": "node",
 								"esModuleInterop": true,
 								"resolveJsonModule": true,
-								"jsx":"react"
+								"jsx":"react",
+								"types":["node"]
 							}
 						}
 					}
