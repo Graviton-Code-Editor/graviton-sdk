@@ -1,6 +1,6 @@
 {
 	"name": "@gveditor/sdk",
-	"version": "0.3.5",
+	"version": "0.3.6",
 	"description": "Graviton SDK to develop plugins.",
 	"main": "bin/index.js",
 	"bin": {
@@ -15,7 +15,9 @@
 		"build": "tsc  --project . ",
 		"build:types": "tsc types/index",
 		"test:release:plugin.ts": "node src/cli.js --target plugin --project ./test/plugin.ts --mode release",
+		"test:release:plugin.tsx": "node src/cli.js --target plugin --project ./test/plugin.tsx --mode release",
 		"test:release:plugin.js": "node src/cli.js --target plugin --project ./test/plugin.js --mode release",
+		"test:release:plugin.jsx": "node src/cli.js --target plugin --project ./test/plugin.jsx --mode release",
 		"test:watch:plugin": "node src/cli.js --target plugin --project ./test/plugin",
 		"test:release:iconpack": "node src/cli.js --target iconpack --project ./test/iconpack --mode release",
 		"test:release:theme": "node src/cli.js --target theme --project ./test/theme --mode release"
@@ -27,6 +29,7 @@
 	"dependencies": {
 		"@babel/core": "^7.11.5",
 		"@babel/preset-env": "^7.11.5",
+		"@babel/preset-react": "^7.10.4",
 		"babel-loader": "^8.1.0",
 		"commander": "^5.0.0",
 		"elliptic": "^6.5.3",
@@ -40,6 +43,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^14.6.2",
+		"react": "^16.13.1",
 		"webpack-cli": "^3.3.12"
 	}
 }

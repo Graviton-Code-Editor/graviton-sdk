@@ -63,7 +63,10 @@ class Bundler {
 						use: {
 							loader: 'babel-loader',
 							options: {
-								presets: ['@babel/preset-env']
+								presets: [
+									'@babel/preset-env',
+									'@babel/preset-react'
+								]
 							}
 						}
 					},
@@ -81,6 +84,7 @@ class Bundler {
 								"moduleResolution": "node",
 								"esModuleInterop": true,
 								"resolveJsonModule": true,
+								"jsx":"react"
 							}
 						}
 					}
@@ -88,6 +92,10 @@ class Bundler {
 			},
 			resolve:{
 				extensions: ['.ts','.js','.tsx','.jsx'],
+			},
+			node: {
+				__dirname: false,
+				__filename: false,
 			},
 			target: 'node',
 			watch: false

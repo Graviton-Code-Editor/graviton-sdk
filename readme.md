@@ -1,7 +1,7 @@
 # 🧵 Graviton SDK
 CLI to develop plugins for [Graviton Editor](https://github.com/Graviton-Code-Editor/Graviton-App)
 
-It makes use of Webpack API under the hood.
+It makes use of Webpack, ts-loader and babel under the hood.
 
 ### ✍ Usage
 Installation:

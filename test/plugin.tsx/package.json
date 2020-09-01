@@ -1,0 +1,9 @@
+{
+	"name": "plugin-test",
+	"type":"plugin",
+	"version": "1.0.0",
+	"mainDev": "dist/main.ts",
+	"mainSrc": "src/main.tsx",
+	"main": "main.ts",
+	"license": "MIT"
+}
