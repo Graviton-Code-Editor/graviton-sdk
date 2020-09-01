@@ -58,10 +58,21 @@ class Bundler {
 			module: {
 				rules: [
 					{
-						test: /\.(js|jsx|tsx|ts)$/,
+						test: /\.(jsx|js)$/,
+						exclude: /(node_modules)/,
+						use: {
+							loader: 'babel-loader',
+							options: {
+								presets: ['@babel/preset-env']
+							}
+						}
+					},
+					{
+						test: /\.(tsx|ts)$/,
 						exclude: /node_modules/,
 						loader: 'ts-loader',
 						options:{
+							onlyCompileBundledFiles: true,
 							"compilerOptions":{
 								"sourceMap": true,
 								"target": "es6",
@@ -72,11 +83,11 @@ class Bundler {
 								"resolveJsonModule": true,
 							}
 						}
-					},
+					}
 				]
 			},
 			resolve:{
-				extensions: ['*', '.js', '.jsx', '.tsx', '.ts'],
+				extensions: ['.ts','.js','.tsx','.jsx'],
 			},
 			target: 'node',
 			watch: false

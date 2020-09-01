@@ -1,6 +1,6 @@
 {
 	"name": "@gveditor/sdk",
-	"version": "0.3.4",
+	"version": "0.3.5",
 	"description": "Graviton SDK to develop plugins.",
 	"main": "bin/index.js",
 	"bin": {
@@ -14,7 +14,8 @@
 		"prepare": "npm run build",
 		"build": "tsc  --project . ",
 		"build:types": "tsc types/index",
-		"test:release:plugin": "node src/cli.js --target plugin --project ./test/plugin --mode release",
+		"test:release:plugin.ts": "node src/cli.js --target plugin --project ./test/plugin.ts --mode release",
+		"test:release:plugin.js": "node src/cli.js --target plugin --project ./test/plugin.js --mode release",
 		"test:watch:plugin": "node src/cli.js --target plugin --project ./test/plugin",
 		"test:release:iconpack": "node src/cli.js --target iconpack --project ./test/iconpack --mode release",
 		"test:release:theme": "node src/cli.js --target theme --project ./test/theme --mode release"
@@ -24,6 +25,9 @@
 	"repository": "https://github.com/Graviton-Code-Editor/graviton-sdk",
 	"bugs": "https://github.com/Graviton-Code-Editor/graviton-sdk/issues",
 	"dependencies": {
+		"@babel/core": "^7.11.5",
+		"@babel/preset-env": "^7.11.5",
+		"babel-loader": "^8.1.0",
 		"commander": "^5.0.0",
 		"elliptic": "^6.5.3",
 		"fs-extra": "^9.0.0",
