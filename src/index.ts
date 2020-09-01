@@ -52,16 +52,33 @@ class Bundler {
 				index: this.entryFile
 			},
 			output:{
-				path: this.distPath
+				path: this.distPath,
+				libraryTarget: 'commonjs'
 			},
 			module: {
 				rules: [
 					{
-						test: /\.tsx?$/,
-						loader: 'ts-loader'
-					}
+						test: /\.(js|jsx|tsx|ts)$/,
+						exclude: /node_modules/,
+						loader: 'ts-loader',
+						options:{
+							"compilerOptions":{
+								"sourceMap": true,
+								"target": "es6",
+								"lib": ["es6"],
+								"module": "commonjs",
+								"moduleResolution": "node",
+								"esModuleInterop": true,
+								"resolveJsonModule": true,
+							}
+						}
+					},
 				]
 			},
+			resolve:{
+				extensions: ['*', '.js', '.jsx', '.tsx', '.ts'],
+			},
+			target: 'node',
 			watch: false
 		}
 		if(dev){
@@ -78,7 +95,8 @@ class Bundler {
 				case 'plugin':
 				
 					this.compiler().run((err: string,stats: any) => {
-						resolve(...[err,stats])
+						const info = stats.toJson();
+						resolve(stats.hasErrors() ? info.errors : null)
 					})
 
 					break;

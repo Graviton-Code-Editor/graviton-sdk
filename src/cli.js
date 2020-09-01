@@ -45,13 +45,19 @@ function validateMode( mode ){
 	if( target && projectPath ){
 		switch(mode){
 			case 'release':
+				let anyError = true
 				const release = new Bundler({
 					projectPath
 				})
-				await release.bundle()
+				await release.bundle().then((err)=>{
+					if(err){
+						log.error(err)
+						anyError = false
+					}
+				})
 				await release.copyAssets()
 				await release.zip()
-				log.success(`Plugin "${release.packageConf.name}" built in ${release.releasePath}`)
+				if(anyError) log.success(`Plugin "${release.packageConf.name}" built in ${release.releasePath}`)
 				break;
 			case 'dev':
 				const dev = new Bundler({
