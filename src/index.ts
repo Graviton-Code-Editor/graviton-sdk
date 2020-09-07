@@ -46,7 +46,6 @@ class Bundler {
 		this.releasePath = path.join(this.buildPath,`${this.packageConf.name}_v${this.packageConf.version}.zip`)
 	}
 	private compiler({ dev = false} = {}){
-		console.log("works")
 		const config = {
 			mode: dev ? 'development' : 'production',
 			entry:{
@@ -68,6 +67,14 @@ class Bundler {
 									presets: [
 										'@babel/preset-env',
 										'@babel/preset-react'
+									],
+									plugins: [
+										[
+											"@babel/plugin-transform-runtime", 
+											{
+												"regenerator": true
+											}
+										]
 									]
 								},
 							}
