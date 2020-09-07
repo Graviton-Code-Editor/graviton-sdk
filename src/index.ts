@@ -46,6 +46,7 @@ class Bundler {
 		this.releasePath = path.join(this.buildPath,`${this.packageConf.name}_v${this.packageConf.version}.zip`)
 	}
 	private compiler({ dev = false} = {}){
+		console.log("works")
 		const config = {
 			mode: dev ? 'development' : 'production',
 			entry:{
@@ -59,35 +60,40 @@ class Bundler {
 				rules: [
 					{
 						test: /\.(jsx|js)$/,
-						exclude: /(node_modules)/,
-						use: {
-							loader: 'babel-loader',
-							options: {
-								presets: [
-									'@babel/preset-env',
-									'@babel/preset-react'
-								]
+						use: [
+							'shebang-loader',
+							{
+								loader: 'babel-loader',
+								options: {
+									presets: [
+										'@babel/preset-env',
+										'@babel/preset-react'
+									]
+								},
 							}
-						}
+						]
 					},
 					{
 						test: /\.(tsx|ts)$/,
-						exclude: /node_modules/,
-						loader: 'ts-loader',
-						options:{
-							onlyCompileBundledFiles: true,
-							"compilerOptions":{
-								"sourceMap": true,
-								"target": "es6",
-								"lib": ["ES2020","dom"],
-								"module": "commonjs",
-								"moduleResolution": "node",
-								"esModuleInterop": true,
-								"resolveJsonModule": true,
-								"jsx":"react",
-								"types":["node"]
-							}
-						}
+						use: [
+							'shebang-loader',
+							{
+								loader:'ts-loader',
+								options:{
+									onlyCompileBundledFiles: true,
+									"compilerOptions":{
+										"sourceMap": true,
+										"target": "es6",
+										"lib": ["ES2020","dom"],
+										"module": "commonjs",
+										"moduleResolution": "node",
+										"esModuleInterop": true,
+										"resolveJsonModule": true,
+										"jsx":"react",
+										"types":["node"]
+									}
+								},
+							}]
 					}
 				]
 			},
