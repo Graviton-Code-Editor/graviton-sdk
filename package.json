@@ -1,6 +1,6 @@
 {
 	"name": "@gveditor/sdk",
-	"version": "0.3.9",
+	"version": "0.4.0",
 	"description": "Graviton SDK to develop plugins.",
 	"main": "bin/index.js",
 	"bin": {
@@ -11,7 +11,7 @@
 		"./types": "./types/index.ts"
 	},
 	"scripts": {
-		"prepare": "npm run build",
+		"prepare": "npm run test:types && npm run build",
 		"build": "tsc  --project . ",
 		"build:types": "tsc types/index",
 		"test:release:plugin.ts": "node src/cli.js --target plugin --project ./test/plugin.ts --mode release",
@@ -20,7 +20,8 @@
 		"test:release:plugin.jsx": "node src/cli.js --target plugin --project ./test/plugin.jsx --mode release",
 		"test:watch:plugin": "node src/cli.js --target plugin --project ./test/plugin",
 		"test:release:iconpack": "node src/cli.js --target iconpack --project ./test/iconpack --mode release",
-		"test:release:theme": "node src/cli.js --target theme --project ./test/theme --mode release"
+		"test:release:theme": "node src/cli.js --target theme --project ./test/theme --mode release",
+    "test:types":"tsc types/index.ts --outDir temp"
 	},
 	"author": "Marc Espín Sanz <mespinsanz@gmail.com>",
 	"license": "MIT",

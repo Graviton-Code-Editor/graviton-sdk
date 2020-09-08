@@ -1,6 +1,6 @@
 import { PuffinEventInstance } from './puffin'
 
-interface WindowOptions {
+export interface WindowOptions {
 	title?: string
 	component: object
 	minWidth?: string
@@ -10,13 +10,10 @@ interface WindowOptions {
 	id?: string
 }
 
-interface WindowInstance {
+export interface WindowInstance {
 	launch: () => void
 	close: () => void
 	on: (eventName: string, eventData: any) => PuffinEventInstance
 }
 
-
-type WindowConstructor = (args: WindowOptions) => WindowInstance
-
-export { WindowConstructor, WindowOptions, WindowInstance }
+export type WindowConstructor = (args: WindowOptions) => WindowInstance

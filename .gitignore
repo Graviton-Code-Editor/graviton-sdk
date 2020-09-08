@@ -3,3 +3,4 @@ test/*/build
 test/*/dist
 node_modules
 bin
+temp

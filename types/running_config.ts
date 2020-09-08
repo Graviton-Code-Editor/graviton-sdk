@@ -80,7 +80,7 @@ interface FolderEventsArgs {
 }
 
 /*
-* Mix all interfaces into one
+* Mix all Events's arguments interfaces into one
 */
 interface EventsArgs extends TabEventArgs, FileEventsArgs, FolderEventsArgs {}
 
