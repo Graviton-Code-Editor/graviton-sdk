@@ -58,49 +58,53 @@ class Bundler {
 			module: {
 				rules: [
 					{
+						test: /\.(png|jpe?g|gif|html)$/i,
+						loader: 'file-loader',
+						options: {
+							name: '[name].[ext]',
+						}
+					},
+					{
+						test: /\.(js)$/,
+						loader: 'shebang-loader'
+					},
+					{
 						test: /\.(jsx|js)$/,
-						use: [
-							'shebang-loader',
-							{
-								loader: 'babel-loader',
-								options: {
-									presets: [
-										'@babel/preset-env',
-										'@babel/preset-react'
-									],
-									plugins: [
-										[
-											"@babel/plugin-transform-runtime", 
-											{
-												"regenerator": true
-											}
-										]
-									]
-								},
-							}
-						]
+						exclude: /node_modules/,
+						loader: 'babel-loader',
+						options: {
+							presets: [
+								'@babel/preset-env',
+								'@babel/preset-react'
+							],
+							plugins: [
+								[
+									"@babel/plugin-transform-runtime",
+									{
+										"regenerator": true
+									}
+								]
+							]
+						}
 					},
 					{
 						test: /\.(tsx|ts)$/,
-						use: [
-							'shebang-loader',
-							{
-								loader:'ts-loader',
-								options:{
-									onlyCompileBundledFiles: true,
-									"compilerOptions":{
-										"sourceMap": true,
-										"target": "es6",
-										"lib": ["ES2020","dom"],
-										"module": "commonjs",
-										"moduleResolution": "node",
-										"esModuleInterop": true,
-										"resolveJsonModule": true,
-										"jsx":"react",
-										"types":["node"]
-									}
-								},
-							}]
+						exclude: /node_modules/,
+						loader: 'ts-loader',
+						options: {
+							onlyCompileBundledFiles: true,
+							"compilerOptions": {
+								"sourceMap": true,
+								"target": "es6",
+								"lib": ["ES2020", "dom"],
+								"module": "commonjs",
+								"moduleResolution": "node",
+								"esModuleInterop": true,
+								"resolveJsonModule": true,
+								"jsx": "react",
+								"types": ["node"]
+							}
+						}
 					}
 				]
 			},
