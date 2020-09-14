@@ -20,17 +20,15 @@ Build plugin for production:
 gvsdk --project . --target plugin --mode release
 ```
 
-Available targets:
-* plugin ( aka Dynamic or JavaScript plugin )
-* iconpack ( Icons pack )
-* theme ( UI themes )
-
 ### 📜 Instructions
 
 CLI parameters:
 
 * project: Path of the Plugin's folder (where the package.json is located)
-* target: Target type (plugin | iconpack)
+* target: Target type:
+	* plugin ( aka Dynamic or JavaScript plugin )
+	* iconpack ( Icons pack )
+	* theme ( UI themes )
 * mode: Build type (dev, release)
 
 ### 🤖 Who is using this?
