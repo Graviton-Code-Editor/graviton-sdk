@@ -176,7 +176,7 @@ class Bundler {
 			if(this.pluginType == 'plugin'){
 				this.compiler({
 					dev: true
-				}).watch({},(err: string,stats: any) => {
+				}).watch({},(err: string, stats: any) => {
 					const info = stats.toJson();
 					callback(stats.hasErrors() ? info.errors : null,stats)
 				})
@@ -185,8 +185,23 @@ class Bundler {
 		})
 	}
 	public copyAssets(){
-		return new Promise((resolve) => {
-			const dirProject = path.join(this.distPath,'package.json')
+		return new Promise(async (resolve) => {
+			const dirProject = path.join(this.distPath, 'package.json')
+			const { assets } = this.packageConf
+			
+			if(assets){
+				await Promise.all(assets.map((asset: string) => {
+					return new Promise(res => {
+						const assetPath = path.join(this.projectPath, asset)
+						const assetDistPath = path.join(this.distPath, asset)
+						ncp(assetPath, assetDistPath, {}, (err: string) => {
+							if(err) console.log(err)
+							res()
+						})
+					})
+				}))
+			}
+			
 			fs.copyFile(this.packagePath, dirProject, (err: string) => {
 				if (err) throw err;
 				resolve()

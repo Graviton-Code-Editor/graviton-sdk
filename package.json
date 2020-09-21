@@ -1,6 +1,6 @@
 {
 	"name": "@gveditor/sdk",
-	"version": "0.4.1",
+	"version": "0.4.2",
 	"description": "Graviton SDK to develop plugins.",
 	"main": "bin/index.js",
 	"bin": {
@@ -18,6 +18,7 @@
 		"test:release:plugin.tsx": "node src/cli.js --target plugin --project ./test/plugin.tsx --mode release",
 		"test:release:plugin.js": "node src/cli.js --target plugin --project ./test/plugin.js --mode release",
 		"test:release:plugin.jsx": "node src/cli.js --target plugin --project ./test/plugin.jsx --mode release",
+		"test:release:plugin.assets": "node src/cli.js --target plugin --project ./test/plugin.assets --mode release",
 		"test:watch:plugin": "node src/cli.js --target plugin --project ./test/plugin",
 		"test:release:iconpack": "node src/cli.js --target iconpack --project ./test/iconpack --mode release",
 		"test:release:theme": "node src/cli.js --target theme --project ./test/theme --mode release",

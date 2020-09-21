@@ -1,0 +1,12 @@
+{
+	"name": "plugin-test",
+	"type":"plugin",
+	"version": "1.0.0",
+	"mainDev": "dist/main.js",
+	"mainSrc": "main.js",
+	"main": "main.js",
+	"license": "MIT",
+	"assets":[
+		"./assets"
+	]
+}
