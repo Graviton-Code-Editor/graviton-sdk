@@ -12,12 +12,12 @@ npm install --save-dev @gveditor/sdk
 
 Develop plugin for development:
 ```shell
-gvsdk --project . --target plugin --mode dev
+gvsdk --project ./ --target plugin --mode dev
 ```
 
 Build plugin for production:
 ```shell
-gvsdk --project . --target plugin --mode release
+gvsdk --project ./ --target plugin --mode release
 ```
 
 ### 📜 Instructions
