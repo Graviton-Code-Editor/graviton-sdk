@@ -132,8 +132,7 @@ class Bundler {
 				case 'plugin':
 				
 					this.compiler().run((err: string,stats: any) => {
-						const info = stats ? stats.toJson() : err
-						resolve(stats.hasErrors() ? info.errors : null)
+						resolve(stats ? stats.hasErrors() ? stats.toJson().errors : err : null)
 					})
 
 					break;
