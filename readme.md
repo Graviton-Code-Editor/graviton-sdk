@@ -24,17 +24,17 @@ gvsdk --project ./ --target plugin --mode release
 
 CLI parameters:
 
-* project: Path of the Plugin's folder (where the package.json is located)
-* target: Target type:
-	* plugin ( aka Dynamic or JavaScript plugin )
-	* iconpack ( Icons pack )
-	* theme ( UI themes )
-* mode: Build type (dev, release)
+* `--project`: Path of the Plugin's folder (where the package.json is located)
+* `--target`: Target type:
+	* `plugin` ( aka Dynamic or JavaScript plugin )
+	* `iconpack` ( Icons pack )
+	* `theme` ( UI themes )
+* `--mode`: Build type (dev, release)
 
-### 🤖 Who is using this?
+### 🤖 Where is this being used?
 
 * [Deno Graviton](https://github.com/marc2332/deno-graviton)
 * [Cargo Graviton](https://github.com/marc2332/cargo-graviton)
 * [Flutter Graviton](https://github.com/Graviton-Code-Editor/flutter-plugin)
 
-And Graviton Editor it self.
+And Graviton Editor itself.
