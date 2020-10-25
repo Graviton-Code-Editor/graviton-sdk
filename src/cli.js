@@ -10,6 +10,7 @@ program
 	.option('-p, --project <value>', 'Project path')
 	.option('-t, --target <value>', 'Target type')
 	.option('-m, --mode <value>', 'Mode')
+	.option('-pm, --platform <value>', 'Webpack target')
 ;
 
 program.parse(process.argv);
@@ -42,12 +43,15 @@ function validateMode( mode ){
 	const target = validateTarget(program.target)
 	const mode = validateMode(program.mode)
 	const projectPath = path.join(process.cwd(), program.project)
+	const webpackTarget = program.platform || 'node'
+
 	if( target && projectPath ){
 		switch(mode){
 			case 'release':
 				let anyError = true
 				const release = new Bundler({
-					projectPath
+					projectPath,
+					webpackTarget
 				})
 				await release.bundle().then((err)=>{
 					if(err){
@@ -61,7 +65,8 @@ function validateMode( mode ){
 				break;
 			case 'dev':
 				const dev = new Bundler({
-					projectPath
+					projectPath,
+					webpackTarget
 				})
 				let lastError = null
 				dev.watch((err) => {

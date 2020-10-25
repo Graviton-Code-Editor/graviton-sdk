@@ -12,6 +12,7 @@ const allowedDirs = [
 interface BundlerArgs {
 	projectPath: string
 	distPath: string
+	webpackTarget: string
 }
 
 class Bundler {
@@ -23,13 +24,16 @@ class Bundler {
 	distPath: string
 	buildPath: string
 	releasePath: string
+	webpackTarget: string
 	
 	constructor({
 		projectPath,
-		distPath
+		distPath,
+		webpackTarget
 	}: BundlerArgs){
 		this.packagePath = path.join(projectPath, 'package.json')
 		this.projectPath = projectPath
+		this.webpackTarget = webpackTarget
 		
 		try {
 			this.packageConf = require(this.packagePath);
@@ -115,7 +119,7 @@ class Bundler {
 				__dirname: false,
 				__filename: false,
 			},
-			target: 'node',
+			target: this.webpackTarget,
 			watch: false
 		}
 		if(dev){
