@@ -30,6 +30,7 @@ CLI parameters:
 	* `iconpack` ( Icons pack )
 	* `theme` ( UI themes )
 * `--mode`: Build type (dev, release)
+* `--platform`: Any webpack target, it defaults to 'node'
 
 ### 🤖 Where is this being used?
 
