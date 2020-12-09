@@ -43,7 +43,7 @@ class Bundler {
 		
 		this.pluginType = this.packageConf.type || 'plugin'
 		
-		this.entryFile = path.join(this.projectPath, this.packageConf.mainSrc)
+		this.entryFile = path.join(this.projectPath, this.packageConf.mainSrc ? this.packageConf.mainSrc : '')
 		
 		this.distPath = distPath || path.join(this.projectPath, 'dist')
 		this.buildPath = path.join(this.projectPath, 'build')
