@@ -119,6 +119,9 @@ class Bundler {
 			},
 			resolve:{
 				extensions: ['.ts','.js','.tsx','.jsx'],
+				fallback: {
+					path: require.resolve('path-browserify'),
+				},
 			},
 			node: {
 				__dirname: false,
