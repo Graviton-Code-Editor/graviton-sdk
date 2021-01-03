@@ -50,8 +50,13 @@ class Bundler {
 		this.releasePath = path.join(this.buildPath,`${this.packageConf.name}_v${this.packageConf.version}.zip`)
 	}
 	private compiler({ dev = false} = {}){
+		enum modes {
+			dev = 'development',
+			prod = 'production'
+		}
+		
 		const config = {
-			mode: dev ? 'development' : 'production',
+			mode: dev ? modes.dev  :  modes.prod,
 			entry:{
 				index: this.entryFile
 			},
@@ -119,11 +124,7 @@ class Bundler {
 				__dirname: false,
 				__filename: false,
 			},
-			target: this.webpackTarget,
-			watch: false
-		}
-		if(dev){
-			config.watch = true
+			target: this.webpackTarget
 		}
 		return webpack(config);
 	}
@@ -135,7 +136,7 @@ class Bundler {
 			switch(this.pluginType){
 				case 'plugin':
 				
-					this.compiler().run((err: string,stats: any) => {
+					this.compiler().run((err: any,stats: any) => {
 						resolve(stats ? stats.hasErrors() ? stats.toJson().errors : err : null)
 					})
 
@@ -179,7 +180,7 @@ class Bundler {
 			if(this.pluginType == 'plugin'){
 				this.compiler({
 					dev: true
-				}).watch({},(err: string, stats: any) => {
+				}).watch({},(err: any, stats: any) => {
 					const info = stats.toJson();
 					callback(stats.hasErrors() ? info.errors : null,stats)
 				})
