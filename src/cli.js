@@ -60,8 +60,12 @@ function validateMode( mode ){
 					}
 				})
 				await release.copyAssets()
-				await release.zip()
-				if(anyError) log.success(`Plugin "${release.packageConf.name}" built in ${release.releasePath}`)
+				await release.zip() // Compress it in a ZIP file
+				await release.zip('gvp') // Compress it in a GVP file
+				if(anyError) log.success(`Plugin "${release.packageConf.name}" built in: \n
+  ↳ ${release.releasePath}.zip
+  ↳ ${release.releasePath}.gvp
+				`)
 				break;
 			case 'dev':
 				const dev = new Bundler({

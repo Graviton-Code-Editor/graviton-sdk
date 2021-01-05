@@ -47,7 +47,7 @@ class Bundler {
 		
 		this.distPath = distPath || path.join(this.projectPath, 'dist')
 		this.buildPath = path.join(this.projectPath, 'build')
-		this.releasePath = path.join(this.buildPath,`${this.packageConf.name}_v${this.packageConf.version}.zip`)
+		this.releasePath = path.join(this.buildPath,`${this.packageConf.name}_v${this.packageConf.version}`)
 	}
 	private compiler({ dev = false} = {}){
 		enum modes {
@@ -215,12 +215,12 @@ class Bundler {
 			});
 		})
 	}
-	public zip(){
+	public zip(extension = 'zip'){
 		return new Promise(async (resolve) => {
 			if( !fs.existsSync(this.buildPath) ) {
 				fs.mkdirSync(this.buildPath)
 			}
-			await zip(this.distPath, this.releasePath);
+			await zip(this.distPath, `${this.releasePath}.${extension}`);
 			resolve(this)
 		})
 	}
