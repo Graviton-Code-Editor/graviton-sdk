@@ -55,7 +55,13 @@ function validateMode( mode ){
 				})
 				await release.bundle().then((err)=>{
 					if(err){
-						log.error(err)
+						if(typeof err === 'string'){
+							log.error(err)
+						}else{
+							err.map(error => {
+								log.error(`Error in ${error.moduleName} \n\n ${error.message}`)
+							})
+						}
 						anyError = false
 					}
 				})
