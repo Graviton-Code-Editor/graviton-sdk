@@ -121,7 +121,8 @@ class Bundler {
 				extensions: ['.ts','.js','.tsx','.jsx'],
 				fallback: {
 					path: require.resolve('path-browserify'),
-					crypto: require.resolve('crypto-browserify')
+					crypto: require.resolve('crypto-browserify'),
+					stream: require.resolve('stream-browserify')
 				},
 			},
 			node: {
