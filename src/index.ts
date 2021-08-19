@@ -64,6 +64,11 @@ class Bundler {
 				path: this.distPath,
 				libraryTarget: 'commonjs'
 			},
+			plugins: [
+				new webpack.ProvidePlugin({
+					Buffer: ['buffer', 'Buffer'],
+				})
+			],
 			module: {
 				rules: [
 					{
