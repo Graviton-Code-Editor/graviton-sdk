@@ -66,7 +66,7 @@ class Bundler {
 			},
 			plugins: [
 				new webpack.ProvidePlugin({
-					Buffer: ['buffer', 'Buffer'],
+					'window.Buffer': ['buffer', 'Buffer'],
 				})
 			],
 			module: {
